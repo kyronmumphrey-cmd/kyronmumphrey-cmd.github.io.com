@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mario Clicker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Mario Clicker</h1>
+        <p>Collect coins, power up with Mario-themed upgrades, and build your Mushroom Kingdom empire.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-label">Coins</span>
+          <span id="coinCount" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Coins / click</span>
+          <span id="coinsPerClick" class="stat-value">1</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Coins / sec</span>
+          <span id="coinsPerSecond" class="stat-value">0</span>
+        </div>
+      </div>
+      <div class="world-status">
+        <div class="stat-card">
+          <span class="stat-label">World</span>
+          <span id="worldName" class="stat-value">Mushroom Meadow</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">World multiplier</span>
+          <span id="worldMultiplier" class="stat-value">x1.00</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Coins to next world</span>
+          <span id="coinsToNextWorld" class="stat-value">100</span>
+        </div>
+      </div>
+      <div class="world-progress">
+        <div class="progress-label">
+          <span>World progress</span>
+          <span id="worldProgressText">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="game-panel">
+      <button id="clickButton" class="mario-coin" aria-label="Click the big Mario coin">
+        <div class="mario-cap"></div>
+        <div class="mario-face" aria-hidden="true">
+          <span class="eye left"></span>
+          <span class="eye right"></span>
+          <span class="mouth"></span>
+        </div>
+        <span class="coin-letter">M</span>
+      </button>
+      <p class="game-instruction">Click the big Mario coin to earn coins. Use coins to unlock upgrades like Fire Flower Factories, Yoshi Eggs, and Star Boosts.</p>
+    </section>
+
+    <section class="upgrades">
+      <h2>Power-Up Upgrades</h2>
+      <div id="upgradeGrid" class="upgrade-grid"></div>
+    </section>
+
+    <section class="footer-blurb">
+      <p>Mario Clicker is a fun browser game inspired by Mario power-ups, coins, and Mushroom Kingdom hustle. Keep clicking, upgrade your castle, and watch your coins grow automatically!</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

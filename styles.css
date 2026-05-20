@@ -1,0 +1,355 @@
+:root {
+  --bg: #0d2341;
+  --surface: #112b56;
+  --surface-strong: #16366f;
+  --accent: #ffcb05;
+  --accent-dark: #f0a500;
+  --text: #f7f8ff;
+  --text-muted: #bfccf1;
+  --success: #67d96f;
+  --danger: #ff5f5f;
+  --shadow: rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, #2a5da6 0%, #0d2341 45%, #051225 100%);
+  color: var(--text);
+}
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+header.hero {
+  display: grid;
+  gap: 20px;
+  padding: 26px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: clamp(3rem, 3.5vw, 4.4rem);
+  letter-spacing: -0.04em;
+  color: #ffcc33;
+  text-shadow: 0 8px 30px rgba(255, 191, 0, 0.45);
+}
+
+.hero-content p {
+  margin: 8px 0 0;
+  max-width: 700px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  display: block;
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.game-panel {
+  margin: 36px 0;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.mario-coin {
+  width: min(300px, 55vw);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffe14b, #dd9e1c 45%, #c27e15 100%);
+  box-shadow: inset 0 18px 35px rgba(255, 255, 255, 0.35), 0 28px 60px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  position: relative;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mario-coin:active {
+  transform: scale(0.96);
+  box-shadow: inset 0 18px 35px rgba(255, 255, 255, 0.28), 0 18px 40px rgba(0, 0, 0, 0.32);
+}
+
+.mario-face {
+  position: absolute;
+  width: 60%;
+  height: 50%;
+  top: 42%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.coin-letter {
+  font-size: clamp(6rem, 12vw, 9rem);
+  color: #c21b1b;
+  font-weight: 900;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.eye,
+.mouth {
+  position: absolute;
+  background: #21130f;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.eye {
+  width: 12%;
+  height: 12%;
+  border-radius: 50%;
+  top: 22%;
+}
+
+.eye.left {
+  left: 22%;
+}
+
+.eye.right {
+  right: 22%;
+}
+
+.mouth {
+  width: 28%;
+  height: 12%;
+  border-radius: 0 0 999px 999px;
+  top: 52%;
+}
+
+.mario-coin.clicked .eye {
+  transform: translateY(4px) scaleY(0.85);
+}
+
+.mario-coin.clicked .mouth {
+  transform: translateY(2px) scale(1.05);
+  background: #c31b1b;
+}
+
+.world-status {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.world-progress {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #ffe14b, #ff8d1c);
+  transition: width 0.18s ease;
+}
+
+.game-instruction {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 58%;
+  height: 30%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #f8554c 0%, #c32f2f 100%);
+  border-radius: 50% 50% 35% 35%;
+  box-shadow: inset 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.mario-cap::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 67%;
+  width: 56%;
+  height: 25%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #fff 0%, #f7f7f7 100%);
+  border-radius: 999px;
+}
+
+.game-instruction {
+  margin: 0;
+  max-width: 760px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.upgrades {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.upgrades h2 {
+  margin-top: 0;
+  color: #f7d153;
+  text-shadow: 0 4px 16px rgba(255, 208, 79, 0.4);
+}
+
+.upgrade-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.upgrade-card.locked {
+  opacity: 0.78;
+  filter: saturate(0.85);
+}
+
+.upgrade-card.locked .upgrade-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.upgrade-card.locked .upgrade-output,
+.upgrade-card.locked .upgrade-cost,
+.upgrade-card.locked .upgrade-level {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.upgrade-card.locked h3 {
+  color: #f4d7a0;
+}
+
+.upgrade-card.locked p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.upgrade-card.locked .unlock-text {
+  display: block;
+  margin-top: 12px;
+  color: #ffde8a;
+}
+
+.upgrade-footer {
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.16);
+}
+
+.upgrade-card strong {
+  color: #fff;
+}
+
+.upgrade-card p {
+  margin: 10px 0 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.upgrade-footer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.upgrade-cost,
+.upgrade-level,
+.upgrade-output {
+  font-size: 0.95rem;
+  color: #d3e2ff;
+}
+
+.upgrade-button {
+  margin-left: auto;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff6258, #ffb24b);
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.13s ease, filter 0.13s ease;
+}
+
+.upgrade-button:hover {
+  transform: translateY(-1px);
+}
+
+.upgrade-button:disabled {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: not-allowed;
+}
+
+.footer-blurb {
+  margin-top: 26px;
+  padding: 16px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 22px;
+  }
+
+  .upgrade-button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
